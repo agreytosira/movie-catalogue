@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
+const { InjectManifest } = require('workbox-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -28,6 +29,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new InjectManifest({
+      swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
+      swDest: './sw.js'
+      /* Opsi konfigurasi lainnya didefinisikan di sini */
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html')
