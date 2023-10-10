@@ -52,6 +52,11 @@ body {
   user-select: none;
 }
 
+.app-bar .app-bar__brand h1 a {
+  text-decoration: none;
+  color: #db0000;
+}
+
 .app-bar .app-bar__navigation {
   position: absolute;
   top: 50px;
