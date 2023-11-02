@@ -1,14 +1,17 @@
 class FavoriteMovieSearchPresenter {
   constructor() {
+    this._listenToSearchRequestByUser()
+  }
+
+  _listenToSearchRequestByUser() {
     this._queryElement = document.getElementById('query')
     this._queryElement.addEventListener('change', (event) => {
-      console.log(event)
-      this.latestQuery = event.target.value
+      this._latestQuery = event.target.value
     })
   }
 
   get latestQuery() {
-    return this.latestQuery
+    return this._latestQuery
   }
 }
 
