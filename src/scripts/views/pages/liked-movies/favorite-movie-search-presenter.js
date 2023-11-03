@@ -23,7 +23,7 @@ class FavoriteMovieSearchPresenter {
         // eslint-disable-next-line implicit-arrow-linebreak
         carry.concat(`
         <li class="movie">
-          <span class="movie__title">${movie.title}</span>
+          <span class="movie__title">${movie.title || '-'}</span>
         </li>
       `),
       ''
