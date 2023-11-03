@@ -16,6 +16,22 @@ class FavoriteMovieSearchPresenter {
     this._favoriteMovies.searchMovies(this.latestQuery)
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  _showFoundMovies(movies) {
+    const html = movies.reduce(
+      (carry, movie) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        carry.concat(`
+        <li class="movie">
+          <span class="movie__title">${movie.title}</span>
+        </li>
+      `),
+      ''
+    )
+
+    document.querySelector('.movies').innerHTML = html
+  }
+
   get latestQuery() {
     return this._latestQuery
   }
