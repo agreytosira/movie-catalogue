@@ -1,9 +1,18 @@
-import { spyOn } from 'jest-mock'
 import FavoriteMovieSearchPresenter from '../src/scripts/views/pages/liked-movies/favorite-movie-search-presenter'
-import FavoriteMovieIdb from '../src/scripts/data/favorite-movie-idb'
 
 describe('Searching movies', () => {
   let presenter
+  let favoriteMovies
+
+  const constructPresenter = () => {
+    favoriteMovies = {
+      getAllMovies: jest.fn(),
+      searchMovies: jest.fn()
+    }
+    presenter = new FavoriteMovieSearchPresenter({
+      favoriteMovies
+    })
+  }
 
   const searchMovies = (query) => {
     const queryElement = document.getElementById('query')
@@ -24,14 +33,6 @@ describe('Searching movies', () => {
     `
   }
 
-  const constructPresenter = () => {
-    spyOn(FavoriteMovieIdb, 'searchMovies')
-
-    presenter = new FavoriteMovieSearchPresenter({
-      favoriteMovies: FavoriteMovieIdb
-    })
-  }
-
   beforeEach(() => {
     setMovieSearchContainer()
     constructPresenter()
@@ -39,14 +40,14 @@ describe('Searching movies', () => {
 
   describe('When query is not empty', () => {
     it('should be able to capture the query typed by the user', () => {
-      FavoriteMovieIdb.searchMovies.mockImplementation(() => [])
+      favoriteMovies.searchMovies.mockImplementation(() => [])
       searchMovies('film a')
       expect(presenter.latestQuery).toEqual('film a')
     })
     it('should ask the model to search for liked movies', () => {
-      FavoriteMovieIdb.searchMovies.mockImplementation(() => [])
+      favoriteMovies.searchMovies.mockImplementation(() => [])
       searchMovies('film a')
-      expect(FavoriteMovieIdb.searchMovies).toHaveBeenCalledWith('film a')
+      expect(favoriteMovies.searchMovies).toHaveBeenCalledWith('film a')
     })
     it('should show the found movies', () => {
       presenter._showFoundMovies([{ id: 1 }])
@@ -77,7 +78,7 @@ describe('Searching movies', () => {
         expect(document.querySelectorAll('.movie').length).toEqual(3)
         done()
       })
-      FavoriteMovieIdb.searchMovies.mockImplementation((query) => {
+      favoriteMovies.searchMovies.mockImplementation((query) => {
         if (query === 'film a') {
           return [
             { id: 111, title: 'film abc' },
@@ -97,7 +98,7 @@ describe('Searching movies', () => {
         expect(movieTitles.item(2).textContent).toEqual('ini juga boleh film a')
         done()
       })
-      FavoriteMovieIdb.searchMovies.mockImplementation((query) => {
+      favoriteMovies.searchMovies.mockImplementation((query) => {
         if (query === 'film a') {
           return [
             { id: 111, title: 'film abc' },
@@ -113,6 +114,8 @@ describe('Searching movies', () => {
 
   describe('When query is empty', () => {
     it('should capture the query as empty', () => {
+      favoriteMovies.getAllMovies.mockImplementation(() => [])
+
       searchMovies(' ')
       expect(presenter.latestQuery.length).toEqual(0)
 
@@ -124,6 +127,14 @@ describe('Searching movies', () => {
 
       searchMovies('\t')
       expect(presenter.latestQuery.length).toEqual(0)
+    })
+
+    it('should show all favorite movies', () => {
+      favoriteMovies.getAllMovies.mockImplementation(() => [])
+
+      searchMovies('    ')
+
+      expect(favoriteMovies.getAllMovies).toHaveBeenCalled()
     })
   })
 })
