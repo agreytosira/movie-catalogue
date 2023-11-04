@@ -25,7 +25,6 @@ class FavoriteMovieSearchPresenter {
     this._showFoundMovies(foundMovies)
   }
 
-  // eslint-disable-next-line class-methods-use-this
   _showFoundMovies(movies) {
     this._view.showMovies(movies)
   }
