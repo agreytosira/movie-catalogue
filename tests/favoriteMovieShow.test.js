@@ -16,8 +16,13 @@ describe('Showing all favorite movies', () => {
 
   describe('When no movies have been liked', () => {
     it('should render the information that no movies have been liked', () => {
+      const favoriteMovies = {
+        getAllMovies: jest.fn().mockImplementation(() => [])
+      }
+
       const presenter = new FavoriteMovieShowPresenter({
-        view
+        view,
+        favoriteMovies
       })
 
       const movies = []
@@ -25,7 +30,7 @@ describe('Showing all favorite movies', () => {
 
       expect(document.querySelectorAll('.movie-item__not__found').length).toEqual(1)
     }),
-      fit('should ask for the favorite movies', () => {
+      it('should ask for the favorite movies', () => {
         const favoriteMovies = {
           getAllMovies: jest.fn()
         }
