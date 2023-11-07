@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable class-methods-use-this */
+import { createMovieItemTemplate } from '../../templates/template-creator'
+
 class FavoriteMovieSearchView {
   getTemplate() {
     return `
@@ -53,7 +55,13 @@ class FavoriteMovieSearchView {
   }
 
   showFavoriteMovies(movies) {
-    document.getElementById('movies').innerHTML = '<div class="movie-item__not__found"></div>'
+    let html
+    if (movies.length) {
+      html = movies.reduce((carry, movie) => carry.concat(createMovieItemTemplate(movie)), '')
+    } else {
+      html = '<div class="movie-item__not__found"></div>'
+    }
+    document.getElementById('movies').innerHTML = html
 
     document.getElementById('movies').dispatchEvent(new Event('movies:updated'))
   }
