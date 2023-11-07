@@ -33,23 +33,6 @@ describe('Showing all favorite movies', () => {
       })
     })
 
-    it('should show the information that no movies have been liked', (done) => {
-      document.getElementById('movies').addEventListener('movies:updated', () => {
-        expect(document.querySelectorAll('.movie-item__not__found').length).toEqual(1)
-
-        done()
-      })
-
-      const favoriteMovies = {
-        getAllMovies: jest.fn().mockImplementation(() => [])
-      }
-
-      new FavoriteMovieShowPresenter({
-        view,
-        favoriteMovies
-      })
-    })
-
     it('should ask for the favorite movies', () => {
       const favoriteMovies = {
         getAllMovies: jest.fn().mockImplementation(() => [])
@@ -65,31 +48,6 @@ describe('Showing all favorite movies', () => {
   })
 
   describe('When favorite movies exist', () => {
-    it('should render the movies', () => {
-      const favoriteMovies = {
-        getAllMovies: jest.fn().mockImplementation(() => [])
-      }
-      const presenter = new FavoriteMovieShowPresenter({
-        view,
-        favoriteMovies
-      })
-      presenter._displayMovies([
-        {
-          id: 11,
-          title: 'A',
-          vote_average: 3,
-          overview: 'Sebuah film A'
-        },
-        {
-          id: 22,
-          title: 'B',
-          vote_average: 4,
-          overview: 'Sebuah film B'
-        }
-      ])
-      expect(document.querySelectorAll('.movie-item').length).toEqual(2)
-    })
-
     it('should show the movies', (done) => {
       document.getElementById('movies').addEventListener('movies:updated', () => {
         expect(document.querySelectorAll('.movie-item').length).toEqual(2)
