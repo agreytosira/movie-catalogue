@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable class-methods-use-this */
 class FavoriteMovieSearchView {
@@ -12,6 +13,16 @@ class FavoriteMovieSearchView {
           </div>
         </div>
       `
+  }
+
+  getFavoriteMovieTemplate() {
+    return `
+      <div class="content">
+        <h2 class="content__heading">Your Liked Movie</h2>
+        <div id="movies" class="movies">
+        </div>
+      </div>
+    `
   }
 
   runWhenUserIsSearching(callback) {
@@ -39,6 +50,10 @@ class FavoriteMovieSearchView {
     document.querySelector('.movies').innerHTML = html
 
     document.getElementById('movie-search-container').dispatchEvent(new Event('movies:searched:updated'))
+  }
+
+  showFavoriteMovies(movies) {
+    document.getElementById('movies').innerHTML = '<div class="movie-item__not__found"></div>'
   }
 }
 
