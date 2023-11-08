@@ -3,7 +3,7 @@
 /* eslint-disable class-methods-use-this */
 import { createMovieItemTemplate } from '../../templates/template-creator'
 
-class FavoriteMovieSearchView {
+class FavoriteMovieView {
   getTemplate() {
     return `
       <div class="content">
@@ -45,4 +45,4 @@ class FavoriteMovieSearchView {
   }
 }
 
-export default FavoriteMovieSearchView
+export default FavoriteMovieView

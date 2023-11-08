@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable no-new */
-import FavoriteMovieSearchView from '../src/scripts/views/pages/liked-movies/favorite-movie-search-view'
+import FavoriteMovieView from '../src/scripts/views/pages/liked-movies/favorite-movie-view'
 import FavoriteMovieShowPresenter from '../src/scripts/views/pages/liked-movies/favorite-movie-show-presenter'
 
 describe('Showing all favorite movies', () => {
   let view
 
   const renderTemplate = () => {
-    view = new FavoriteMovieSearchView()
+    view = new FavoriteMovieView()
     document.body.innerHTML = view.getTemplate()
   }
 

@@ -2,7 +2,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import FavoriteMovieSearchPresenter from '../src/scripts/views/pages/liked-movies/favorite-movie-search-presenter'
-import FavoriteMovieSearchView from '../src/scripts/views/pages/liked-movies/favorite-movie-search-view'
+import FavoriteMovieView from '../src/scripts/views/pages/liked-movies/favorite-movie-view'
 
 describe('Searching movies', () => {
   let presenter
@@ -28,7 +28,7 @@ describe('Searching movies', () => {
   }
 
   const setMovieSearchContainer = () => {
-    view = new FavoriteMovieSearchView()
+    view = new FavoriteMovieView()
     document.body.innerHTML = view.getTemplate()
   }
 
