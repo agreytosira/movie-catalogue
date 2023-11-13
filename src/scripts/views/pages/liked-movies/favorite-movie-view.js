@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable class-methods-use-this */
-import { createMovieItemTemplate } from '../../templates/template-creator'
+import { createMovieItemTemplate } from '../../templates/template-creator';
 
 class FavoriteMovieView {
   getTemplate() {
@@ -9,31 +6,30 @@ class FavoriteMovieView {
       <div class="content">
         <input id="query" type="text">
         <h2 class="content__heading">Your Liked Movie</h2>
-   
-        <div>
-          <div id="movies" class="movies">
-          </div>
+  
+        <div id="movies" class="movies">
         </div>
       </div>
-    `
+    `;
   }
 
   runWhenUserIsSearching(callback) {
     document.getElementById('query').addEventListener('change', (event) => {
-      callback(event.target.value)
-    })
+      callback(event.target.value);
+    });
   }
 
   showFavoriteMovies(movies) {
-    let html
+    let html;
     if (movies.length) {
-      html = movies.reduce((carry, movie) => carry.concat(createMovieItemTemplate(movie)), '')
+      html = movies.reduce((carry, movie) => carry.concat(createMovieItemTemplate(movie)), '');
     } else {
-      html = this._getEmptyMovieTemplate()
+      html = this._getEmptyMovieTemplate();
     }
-    document.getElementById('movies').innerHTML = html
 
-    document.getElementById('movies').dispatchEvent(new Event('movies:updated'))
+    document.getElementById('movies').innerHTML = html;
+
+    document.getElementById('movies').dispatchEvent(new Event('movies:updated'));
   }
 
   _getEmptyMovieTemplate() {
@@ -41,8 +37,8 @@ class FavoriteMovieView {
       <div class="movie-item__not__found">
         Tidak ada film untuk ditampilkan
       </div>
-    `
+    `;
   }
 }
 
-export default FavoriteMovieView
+export default FavoriteMovieView;

@@ -94,6 +94,7 @@ main {
   font-weight: normal;
 }
 
+
 /*
   Movies
 */
@@ -236,26 +237,26 @@ footer p a {
 .btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #db0000;
+  background-color: #DB0000;
   border: 1px solid #770000;
   border-radius: 4px;
-
+ 
   font-weight: 500;
   font-size: 16px;
   color: #ffffff;
-
+ 
   cursor: pointer;
-  transition: 0.15s ease-in-out;
+  transition: .15s ease-in-out;
 }
 
 .btn:hover {
-  background-color: #db0000bb;
+  background-color: #DB0000BB;
 }
 
 .btn:active {
-  background-color: #db0000dd;
+  background-color: #DB0000DD;
 }
 
 .btn:focus-visible {
-  outline: 3px solid #db000055;
+  outline: 3px solid #DB000055;
 }
